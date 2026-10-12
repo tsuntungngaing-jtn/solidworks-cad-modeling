@@ -1,0 +1,4 @@
+interface:
+  display_name: "SolidWorks 原生可编辑建模"
+  short_description: "论文复刻、原生可编辑特征、材料成分标注与 STEP 几何验证"
+  default_prompt: "请使用 $solidworks-cad-modeling 按资料建立原生可编辑的 SolidWorks 模型，清楚标注各成分、尺寸来源和假设，并验证后交付。"
