@@ -1,4 +1,4 @@
 interface:
-  display_name: "SolidWorks 原生可编辑建模"
-  short_description: "论文复刻、原生可编辑特征、材料成分标注与 STEP 几何验证"
-  default_prompt: "请使用 $solidworks-cad-modeling 按资料建立原生可编辑的 SolidWorks 模型，清楚标注各成分、尺寸来源和假设，并验证后交付。"
+  display_name: "SolidWorks 原生建模与 DFMA"
+  short_description: "论文复刻、原生参数化、制造装配优化及关键参数验证"
+  default_prompt: "请使用 $solidworks-cad-modeling 根据资料建立或优化原生可编辑 SolidWorks 模型，记录功能接口、尺寸来源和假设；需要时进行 DFMA 权衡，实测关键参数修改、恢复、重开后交付。"

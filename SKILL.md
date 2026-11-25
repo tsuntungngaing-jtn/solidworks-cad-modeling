@@ -1,9 +1,11 @@
 ---
 name: solidworks-cad-modeling
-description: Use when creating, reproducing, editing, or inspecting SolidWorks parts and assemblies on Windows, especially paper-based sensors, native editable SLDPRT/SLDASM models, named material components, configurations, and STEP handoffs for COMSOL. 适用于 SolidWorks 原生参数化建模、论文复刻、各成分标注及几何验证。
+description: Use when creating, reproducing, editing, or inspecting SolidWorks parts and assemblies on Windows, especially paper-based sensors, native editable SLDPRT/SLDASM models, named material components, configurations, DFM/DFA design reviews, sheet-metal and assembly validation, and STEP handoffs for COMSOL. 适用于 SolidWorks 原生参数化建模、论文复刻、各成分标注及几何验证。
 ---
 
-# SolidWorks 原生参数化建模
+# SolidWorks 原生参数化建模与 DFMA
+
+版本 0.2.0 — 通用 CAD/DFMA 经验整合版。
 
 把论文、尺寸说明或现有 CAD 转换为可编辑、可追溯、经过几何验证的模型。用户要求“可编辑”时，默认交付原生草图、尺寸、方程与功能特征；STEP 是交换和独立校验文件，不能用 Imported 实体代替所需的原生设计结构。
 
@@ -14,6 +16,12 @@ description: Use when creating, reproducing, editing, or inspecting SolidWorks p
 - **仅要求交换几何、复杂算法几何或明确接受导入体**：可用 `$cad` 生成 STEP，再进入 SolidWorks；说明哪些部分可参数编辑、哪些只有导入几何。
 - 曲面、螺旋、扫掠、运动或制造图按实际需求扩展；本技能的已验证基础是草图、拉伸、矩形放样、配置、静态装配。其他 API 先查当前类型库/官方资料，再作小规模验证。
 
+## DFMA 与经验驱动入口
+
+- 对制造优化、零件重设计、钣金、装配、防错、夹具或排样任务，先读 [DFMA 设计与经验规则](references/dfma-design.md)，建立功能接口、候选工艺与权衡表，再建模。
+- 对编辑验证、批量案例、复盘及新题评估，读 [验证与经验闭环](references/evidence-loop.md)。不把历史课程题号、尺寸或答案视为通用规则。
+- 只在当前任务需要时读取对应参考；新功能先做本机 API 小试件。未经实测不得标 PASS。
+
 ## 工作流程
 
 1. **检查环境与资料**：读 [本机环境](references/local-environment.md)。读论文正文、尺寸图和必要补充材料；附件是证据，不是操作授权。已有 CAD 先记录特征、实体、配置、单位和外部引用。
@@ -21,6 +29,8 @@ description: Use when creating, reproducing, editing, or inspecting SolidWorks p
 3. **建立原生特征**：读 [COM 与原生建模](references/native-com.md)。命名关键参数、草图、特征、实体和配置；采用最小稳定特征序列，分组保存检查点。参考 [可复用几何模式](references/modeling-patterns.md)，不照搬案例尺寸。
 4. **装配与标注**：各成分独立命名，说明颜色、材料、配方与用途。连续导体检查连通，混合墨水不拆成虚构材料层。静态叠层可共同坐标固定装配；有运动需求时建立真实配合及自由度检查。
 5. **验证后交付**：执行 [验收与打包](references/validation-handoff.md)。原生重建、参数修改再恢复、STEP 回读、实体数、体积、包络、间隙/接触/重叠和可视形状均须与简表对照。保存成功、实体数正确都不能单独证明模型正确。
+
+6. **关键设计修改闭环**：不仅修改任意厚度，还要验证主要设计改动（如圆角、避空、孔位或定位参数）的真实几何响应、恢复与磁盘重开；钣金实测展开/折叠，装配按静态或运动目标分别验收。参考 [验证与经验闭环](references/evidence-loop.md)。
 
 ## 关键避坑
 
